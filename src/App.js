@@ -18,7 +18,7 @@ class App extends React.Component {
     const response = await youtube.get("/search", {
       params: {
         part: "snippet",
-        key: "AIzaSyD75kGXfYRQmrpklu_ayL7Kxj00PUmRtO0",
+        key: KEY,
         q: searchTerm,
       },
     });
