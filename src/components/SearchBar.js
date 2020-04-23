@@ -1,6 +1,18 @@
 import React from "react";
 
-import { Paper, TextField } from "@material-ui/core";
+import { TextField } from "@material-ui/core";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
+import Badge from "@material-ui/core/Badge";
+import AppsIcon from "@material-ui/icons/Apps";
+import NotificationsIcon from "@material-ui/icons/Notifications";
+import AccountCircle from "@material-ui/icons/AccountCircle";
+
+import styles from "./SearchBar.module.css";
 
 class SearchBar extends React.Component {
   state = {
@@ -21,13 +33,54 @@ class SearchBar extends React.Component {
     // Prevents browsers default behavior after submit (prevents refreshing page)
     e.preventDefault();
   };
+
   render() {
     return (
-      <Paper elevation={6} style={{ padding: "25px" }}>
-        <form onSubmit={this.handleSubmit}>
-          <TextField fullWidth label="Search..." onChange={this.handleChange} />
-        </form>
-      </Paper>
+      <AppBar position="static" color="primary">
+        <Toolbar>
+          <IconButton
+            edge="start"
+            className=""
+            color="inherit"
+            aria-label="menu"
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" className="">
+            BetterTube
+          </Typography>
+          <div className={styles.search}>
+            <form onSubmit={this.handleSubmit}>
+              <TextField
+                label="Search"
+                fullWidth
+                onChange={this.handleChange}
+              ></TextField>
+            </form>
+          </div>
+
+          <div className={styles.icons}>
+            <IconButton aria-label="show 4 new apps" color="inherit">
+              <Badge badgeContent={4} color="secondary">
+                <AppsIcon />
+              </Badge>
+            </IconButton>
+            <IconButton aria-label="show 17 new notifications" color="inherit">
+              <Badge badgeContent={17} color="secondary">
+                <NotificationsIcon />
+              </Badge>
+            </IconButton>
+            <IconButton
+              edge="end"
+              aria-label="account of current user"
+              aria-haspopup="true"
+              color="inherit"
+            >
+              <AccountCircle />
+            </IconButton>
+          </div>
+        </Toolbar>
+      </AppBar>
     );
   }
 }
