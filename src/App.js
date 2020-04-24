@@ -1,10 +1,10 @@
 import React from "react";
 import { Grid } from "@material-ui/core";
 
-import youtube from "./api/youtube";
+import { fetchSearch, fetchVideos } from "./api/youtube";
 
 import { SearchBar, VideoDetail, VideoList } from "./components";
-import styles from "./App.module.css";
+// import styles from "./App.module.css";
 
 const api_key = process.env.REACT_APP_APIKEY;
 
@@ -13,20 +13,30 @@ class App extends React.Component {
     videos: [],
     selectedVideo: null,
   };
-
+  async componentDidMount() {
+    const fetchedVideos = await fetchVideos();
+    console.log(fetchedVideos);
+    this.setState({
+      videos: fetchedVideos,
+      selectedVideo: fetchedVideos[0],
+    });
+  }
   onVideoSelect = (video) => {
     this.setState({ selectedVideo: video });
   };
 
   handleSubmit = async (searchTerm) => {
-    const response = await youtube.get("/search", {
+    const searchParams = {
       params: {
         part: "snippet",
         maxResults: 10,
+        order: "viewCount",
         key: api_key,
         q: searchTerm,
       },
-    });
+    };
+    console.log(fetchSearch);
+    const response = await fetchSearch.get("/search", searchParams);
     // console.log(response.data.items[0]);
     this.setState({
       videos: response.data.items,
