@@ -6,13 +6,13 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 
 import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
 import Badge from "@material-ui/core/Badge";
 import AppsIcon from "@material-ui/icons/Apps";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 
 import styles from "./SearchBar.module.css";
+import { MenuDrawer } from ".";
 
 class SearchBar extends React.Component {
   state = {
@@ -38,14 +38,7 @@ class SearchBar extends React.Component {
     return (
       <AppBar position="static" color="primary">
         <Toolbar>
-          <IconButton
-            edge="start"
-            className=""
-            color="inherit"
-            aria-label="menu"
-          >
-            <MenuIcon />
-          </IconButton>
+          <MenuDrawer />
           <Typography variant="h6" className="">
             BetterTube
           </Typography>
