@@ -1,9 +1,9 @@
 import React from "react";
 import { Grid } from "@material-ui/core";
 
-import { fetchSearch, fetchVideos } from "./api/youtube";
+import { fetchSearch, fetchVideos, fetchComments } from "./api/youtube";
 
-import { SearchBar, VideoDetail, VideoList } from "./components";
+import { SearchBar, VideoDetail, VideoList, CommentList } from "./components";
 // import styles from "./App.module.css";
 
 const api_key = process.env.REACT_APP_APIKEY;
@@ -12,13 +12,18 @@ class App extends React.Component {
   state = {
     videos: [],
     selectedVideo: null,
+    comments: [],
   };
   async componentDidMount() {
     const fetchedVideos = await fetchVideos();
-    console.log(fetchedVideos);
+    const fetchedComments = await fetchComments(fetchedVideos[0].id);
+    // console.log(fetchedVideos);
+
+    // console.log(fetchedComments);
     this.setState({
       videos: fetchedVideos,
       selectedVideo: fetchedVideos[0],
+      comments: fetchedComments,
     });
   }
   onVideoSelect = (video) => {
@@ -53,9 +58,15 @@ class App extends React.Component {
             <Grid item xs={12}>
               <SearchBar onFormSubmit={this.handleSubmit} />
             </Grid>
-            <Grid item xs={8}>
-              <VideoDetail video={selectedVideo} />
+            <Grid container xs={8}>
+              <Grid item xs={12} spacing={2}>
+                <VideoDetail video={selectedVideo} />
+              </Grid>
+              <Grid item xs={12} spacing={2}>
+                <CommentList />
+              </Grid>
             </Grid>
+
             <Grid item xs={4}>
               <VideoList videos={videos} onVideoSelect={this.onVideoSelect} />
             </Grid>

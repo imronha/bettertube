@@ -91,8 +91,9 @@ export default function MenuDrawer() {
             className=""
             color="inherit"
             aria-label="menu"
+            onClick={toggleDrawer(anchor, true)}
           >
-            <MenuIcon onClick={toggleDrawer(anchor, true)}>{anchor}</MenuIcon>
+            <MenuIcon></MenuIcon>
           </IconButton>
           <Drawer
             anchor={anchor}

@@ -5,22 +5,6 @@ export const fetchSearch = axios.create({
   baseURL: "https://www.googleapis.com/youtube/v3/",
 });
 
-// export const fetchVideos = async () => {
-//   try {
-//     const {
-//       data: { items },
-//     } = await axios.get(
-//       "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&key=" +
-//         api_key +
-//         "&q=cats&order=viewCount"
-//     );
-//     // console.log(items);
-//     return items;
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
 export const fetchVideos = async () => {
   try {
     const {
@@ -31,6 +15,37 @@ export const fetchVideos = async () => {
     );
     // console.log(items);
     return items;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// export const fetchComments = async (videoId) => {
+//   try {
+//     const res = await axios.get(
+//       "https://www.googleapis.com/youtube/v3/comments?part=snippet&videoId=" +
+//         videoId +
+//         "&key=" +
+//         api_key
+//     );
+//     console.log(res);
+//     return res;
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+
+export const fetchComments = async (videoId) => {
+  try {
+    const res = await axios.get(
+      "https://www.googleapis.com/youtube/v3/commentThreads?key=" +
+        api_key +
+        "&textFormat=plainText&part=snippet&videoId=" +
+        videoId +
+        "&maxResults=50"
+    );
+    console.log(res);
+    return res;
   } catch (error) {
     console.log(error);
   }
