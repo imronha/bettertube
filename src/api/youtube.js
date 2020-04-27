@@ -42,9 +42,9 @@ export const fetchComments = async (videoId) => {
         api_key +
         "&textFormat=plainText&part=snippet&videoId=" +
         videoId +
-        "&maxResults=50"
+        "&maxResults=30"
     );
-    console.log(res);
+    // console.log(res);
     return res;
   } catch (error) {
     console.log(error);

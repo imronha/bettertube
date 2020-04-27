@@ -36,7 +36,7 @@ class SearchBar extends React.Component {
 
   render() {
     return (
-      <AppBar position="static" color="primary">
+      <AppBar position="static" style={{ background: "#202020" }}>
         <Toolbar>
           <MenuDrawer />
           <Typography variant="h6" className="">

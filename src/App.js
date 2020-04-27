@@ -19,12 +19,13 @@ class App extends React.Component {
     const fetchedComments = await fetchComments(fetchedVideos[0].id);
     // console.log(fetchedVideos);
 
-    // console.log(fetchedComments);
+    // console.log(fetchedComments.data.items);
     this.setState({
       videos: fetchedVideos,
       selectedVideo: fetchedVideos[0],
-      comments: fetchedComments,
+      comments: fetchedComments.data.items,
     });
+    console.log(this.state.comments);
   }
   onVideoSelect = (video) => {
     this.setState({ selectedVideo: video });
@@ -50,7 +51,7 @@ class App extends React.Component {
   };
 
   render() {
-    const { selectedVideo, videos } = this.state;
+    const { selectedVideo, videos, comments } = this.state;
     return (
       <Grid justify="center" container spacing={4}>
         <Grid item xs={11}>
@@ -59,11 +60,11 @@ class App extends React.Component {
               <SearchBar onFormSubmit={this.handleSubmit} />
             </Grid>
             <Grid container xs={8}>
-              <Grid item xs={12} spacing={2}>
+              <Grid item xs={12}>
                 <VideoDetail video={selectedVideo} />
               </Grid>
-              <Grid item xs={12} spacing={2}>
-                <CommentList />
+              <Grid item xs={12}>
+                <CommentList comments={comments} />
               </Grid>
             </Grid>
 
