@@ -27,8 +27,14 @@ class App extends React.Component {
     });
     console.log(this.state.comments);
   }
-  onVideoSelect = (video) => {
-    this.setState({ selectedVideo: video });
+  onVideoSelect = async (video) => {
+    const fetchedComments = await fetchComments(video.id);
+    this.setState({
+      selectedVideo: video,
+      comments: fetchedComments.data.items,
+    });
+    // console.log(fetchedComments.data.items);
+    // this.setState({ comments: fetchComments(video.id) });
   };
 
   handleSubmit = async (searchTerm) => {
@@ -41,7 +47,7 @@ class App extends React.Component {
         q: searchTerm,
       },
     };
-    console.log(fetchSearch);
+    // console.log(fetchSearch);
     const response = await fetchSearch.get("/search", searchParams);
     // console.log(response.data.items[0]);
     this.setState({
