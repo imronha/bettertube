@@ -16,16 +16,17 @@ class App extends React.Component {
   };
   async componentDidMount() {
     const fetchedVideos = await fetchVideos();
-    const fetchedComments = await fetchComments(fetchedVideos[0].id);
+    const fetchedComments = await fetchComments(fetchedVideos[0].id.toString());
     // console.log(fetchedVideos);
 
-    // console.log(fetchedComments.data.items);
+    console.log(fetchedVideos[0].id.toString());
+    console.log(fetchedComments);
     this.setState({
       videos: fetchedVideos,
       selectedVideo: fetchedVideos[0],
       comments: fetchedComments.data.items,
     });
-    console.log(this.state.comments);
+    // console.log(this.state.comments);
   }
   onVideoSelect = async (video) => {
     const fetchedComments = await fetchComments(video.id);
@@ -45,14 +46,18 @@ class App extends React.Component {
         order: "viewCount",
         key: api_key,
         q: searchTerm,
+        type: "video",
       },
     };
     // console.log(fetchSearch);
-    const response = await fetchSearch.get("/search", searchParams);
-    // console.log(response.data.items[0]);
+    const fetchedSearch = await fetchSearch.get("/search", searchParams);
+    // const fetchedComments = await fetchComments(
+    //   response.data.items[0].id.videoId
+    // );
+    console.log(fetchedSearch.data.items[0]);
     this.setState({
-      videos: response.data.items,
-      selectedVideo: response.data.items[0],
+      videos: fetchedSearch.data.items,
+      selectedVideo: fetchedSearch.data.items[0],
     });
   };
 

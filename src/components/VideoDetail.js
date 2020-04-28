@@ -5,7 +5,7 @@ import { Grid } from "@material-ui/core";
 import { Paper, Typography } from "@material-ui/core";
 
 const VideoDetail = ({ video }) => {
-  // console.log(video);
+  console.log(video);
   if (!video) {
     return <div>Loading...</div>;
   }
@@ -30,10 +30,7 @@ const VideoDetail = ({ video }) => {
       <Grid item spacing={2} xs={12}>
         <Paper elevation={6} style={{ padding: "15px" }}>
           <Typography variant="h5">{video.snippet.title}</Typography>
-          <Typography variant="subtitle2">
-            {video.statistics.viewCount} Views •{" "}
-            {new Date(video.snippet.publishedAt).toDateString()}
-          </Typography>
+
           <Divider />
           <Typography variant="body1">{video.snippet.channelTitle}</Typography>
           <Typography variant="body2">{video.snippet.description}</Typography>
