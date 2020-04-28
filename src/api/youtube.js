@@ -13,7 +13,7 @@ export const fetchVideos = async () => {
       "https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&regionCode=US&maxResults=10&key=" +
         api_key
     );
-    console.log(items);
+    // console.log(items);
     return items;
   } catch (error) {
     console.log(error);
@@ -44,7 +44,7 @@ export const fetchComments = async (videoId) => {
         videoId +
         "&maxResults=30"
     );
-    console.log(res);
+    // console.log(res);
     return res;
   } catch (error) {
     console.log(error);

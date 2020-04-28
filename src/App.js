@@ -19,8 +19,8 @@ class App extends React.Component {
     const fetchedComments = await fetchComments(fetchedVideos[0].id.toString());
     // console.log(fetchedVideos);
 
-    console.log(fetchedVideos[0].id.toString());
-    console.log(fetchedComments);
+    // console.log(fetchedVideos[0].id.toString());
+    // console.log(fetchedComments);
     this.setState({
       videos: fetchedVideos,
       selectedVideo: fetchedVideos[0],
@@ -52,9 +52,10 @@ class App extends React.Component {
     // console.log(fetchSearch);
     const fetchedSearch = await fetchSearch.get("/search", searchParams);
     // const fetchedComments = await fetchComments(
-    //   response.data.items[0].id.videoId
+    //   fetchedSearch.data.items[0].id.videoId.toString()
     // );
-    console.log(fetchedSearch.data.items[0]);
+    // console.log(fetchedSearch.data.items[0].id);
+    // console.log(fetchedComments.data.items);
     this.setState({
       videos: fetchedSearch.data.items,
       selectedVideo: fetchedSearch.data.items[0],
