@@ -10,6 +10,7 @@ const VideoDetail = ({ video }) => {
     return <div>Loading...</div>;
   }
   // console.log(video.id);
+  
   const videoSrc = `https://www.youtube.com/embed/${video.id}`;
   return (
     <Grid item spacing={2} xs={12}>
